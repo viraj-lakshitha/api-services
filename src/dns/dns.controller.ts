@@ -5,8 +5,10 @@ import {
   BadRequestException,
   InternalServerErrorException,
   ValidationPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { DnsService } from './dns.service';
+import { ApiKeyGuard } from '../auth/api-key.guard';
 import {
   DnsLookupDto,
   DnsLookupWithFamilyDto,
@@ -15,6 +17,7 @@ import {
 } from './dto/dns-lookup.dto';
 
 @Controller('dns')
+@UseGuards(ApiKeyGuard)
 export class DnsController {
   constructor(private readonly dnsService: DnsService) {}
 
