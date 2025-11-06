@@ -21,6 +21,10 @@ import {
 export class DnsController {
   constructor(private readonly dnsService: DnsService) {}
 
+  private getErrorMessage(error: unknown): string {
+    return error instanceof Error ? error.message : 'Unknown error occurred';
+  }
+
   @Post('lookup')
   async lookup(@Body(ValidationPipe) dnsLookupDto: DnsLookupDto) {
     try {
@@ -31,8 +35,7 @@ export class DnsController {
         records: results,
       };
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error occurred';
+      const errorMessage = this.getErrorMessage(error);
       if (
         errorMessage.includes('ENOTFOUND') ||
         errorMessage.includes('ENODATA')
@@ -61,8 +64,7 @@ export class DnsController {
         records: results,
       };
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error occurred';
+      const errorMessage = this.getErrorMessage(error);
       if (
         errorMessage.includes('ENOTFOUND') ||
         errorMessage.includes('ENODATA')
@@ -89,8 +91,7 @@ export class DnsController {
         hostnames: results,
       };
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error occurred';
+      const errorMessage = this.getErrorMessage(error);
       if (errorMessage.includes('ENOTFOUND')) {
         throw new BadRequestException(
           `No hostname found for IP "${dnsReverseLookupDto.ipAddress}"`,
@@ -111,8 +112,7 @@ export class DnsController {
         records: results,
       };
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error occurred';
+      const errorMessage = this.getErrorMessage(error);
       throw new InternalServerErrorException(errorMessage);
     }
   }
@@ -128,8 +128,7 @@ export class DnsController {
         records: results,
       };
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error occurred';
+      const errorMessage = this.getErrorMessage(error);
       throw new InternalServerErrorException(errorMessage);
     }
   }
@@ -145,8 +144,7 @@ export class DnsController {
         records: results,
       };
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error occurred';
+      const errorMessage = this.getErrorMessage(error);
       throw new InternalServerErrorException(errorMessage);
     }
   }
@@ -162,8 +160,7 @@ export class DnsController {
         record: results,
       };
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error occurred';
+      const errorMessage = this.getErrorMessage(error);
       throw new InternalServerErrorException(errorMessage);
     }
   }
@@ -181,8 +178,7 @@ export class DnsController {
         records: results,
       };
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error occurred';
+      const errorMessage = this.getErrorMessage(error);
       throw new InternalServerErrorException(errorMessage);
     }
   }

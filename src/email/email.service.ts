@@ -44,15 +44,21 @@ export class EmailService {
         ...(sendEmailDto.replyTo && { replyTo: sendEmailDto.replyTo }),
       });
 
-      if (response.error) {
+      if (
+        response.error &&
+        response.error instanceof Object &&
+        'message' in response.error
+      ) {
+        const errorMessage = (response.error as Record<string, unknown>)
+          .message as string;
         throw new InternalServerErrorException(
-          `Failed to send email: ${response.error.message}`,
+          `Failed to send email: ${errorMessage}`,
         );
       }
 
       return {
         success: true,
-        messageId: response.data.id,
+        messageId: response?.data?.id,
         to: sendEmailDto.to,
         subject: sendEmailDto.subject,
       };

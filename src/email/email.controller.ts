@@ -16,6 +16,6 @@ export class EmailController {
 
   @Post('send')
   async sendEmail(@Body(ValidationPipe) sendEmailDto: SendEmailDto) {
-    return this.emailService.sendEmail(sendEmailDto);
+    return await this.emailService.sendEmail(sendEmailDto);
   }
 }
