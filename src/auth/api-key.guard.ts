@@ -4,10 +4,13 @@ import {
   ExecutionContext,
   UnauthorizedException,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import type { Request } from 'express';
 
 @Injectable()
 export class ApiKeyGuard implements CanActivate {
+  constructor(private configService: ConfigService) {}
+
   canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest<Request>();
     const apiKey = this.extractApiKey(request);
@@ -16,7 +19,7 @@ export class ApiKeyGuard implements CanActivate {
       throw new UnauthorizedException('API key is missing');
     }
 
-    const validApiKey = process.env.APP_API_KEY_AUTH;
+    const validApiKey = this.configService.get<string>('auth.apiKeyAuth');
     if (!validApiKey) {
       throw new Error('APP_API_KEY_AUTH environment variable is not set');
     }

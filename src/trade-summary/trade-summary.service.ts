@@ -12,25 +12,25 @@ interface TradeSummaryPayload {
   id: number;
   name: string;
   symbol: string;
-  quantity?: number | null;
-  percentageChange?: number | null;
-  change?: number | null;
-  price?: number | null;
-  previousClose?: number | null;
-  high?: number | null;
-  low?: number | null;
-  lastTradedTime?: number | null;
-  issueDate?: string | null;
-  turnover?: number | null;
-  sharevolume?: number | null;
-  tradevolume?: number | null;
-  marketCap?: number | null;
-  marketCapPercentage?: number | null;
-  open?: number | null;
-  closingPrice?: number | null;
-  crossingVolume?: number | null;
-  crossingTradeVol?: number | null;
-  status?: number | null;
+  quantity?: number;
+  percentageChange?: number;
+  change?: number;
+  price?: number;
+  previousClose?: number;
+  high?: number;
+  low?: number;
+  lastTradedTime?: number;
+  issueDate?: string;
+  turnover?: number;
+  sharevolume?: number;
+  tradevolume?: number;
+  marketCap?: number;
+  marketCapPercentage?: number;
+  open?: number;
+  closingPrice?: number;
+  crossingVolume?: number;
+  crossingTradeVol?: number;
+  status?: number;
 }
 
 interface TradeSummaryResponse {
@@ -160,29 +160,6 @@ export class TradeSummaryService implements OnModuleInit {
   }
 
   private normalizeEntry(entry: TradeSummaryPayload): TradeSummaryPayload {
-    return {
-      id: entry.id,
-      name: entry.name,
-      symbol: entry.symbol,
-      quantity: entry.quantity ?? null,
-      percentageChange: entry.percentageChange ?? null,
-      change: entry.change ?? null,
-      price: entry.price ?? null,
-      previousClose: entry.previousClose ?? null,
-      high: entry.high ?? null,
-      low: entry.low ?? null,
-      lastTradedTime: entry.lastTradedTime ?? null,
-      issueDate: entry.issueDate ?? null,
-      turnover: entry.turnover ?? null,
-      sharevolume: entry.sharevolume ?? null,
-      tradevolume: entry.tradevolume ?? null,
-      marketCap: entry.marketCap ?? null,
-      marketCapPercentage: entry.marketCapPercentage ?? null,
-      open: entry.open ?? null,
-      closingPrice: entry.closingPrice ?? null,
-      crossingVolume: entry.crossingVolume ?? null,
-      crossingTradeVol: entry.crossingTradeVol ?? null,
-      status: entry.status ?? null,
-    };
+    return entry;
   }
 }

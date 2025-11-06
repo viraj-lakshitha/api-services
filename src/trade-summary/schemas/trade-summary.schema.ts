@@ -15,62 +15,62 @@ export class TradeSummary {
   @Prop({ required: true })
   symbol: string;
 
-  @Prop()
-  quantity?: number | null;
+  @Prop({ type: Number })
+  quantity?: number;
 
-  @Prop()
-  percentageChange?: number | null;
+  @Prop({ type: Number })
+  percentageChange?: number;
 
-  @Prop()
-  change?: number | null;
+  @Prop({ type: Number })
+  change?: number;
 
-  @Prop()
-  price?: number | null;
+  @Prop({ type: Number })
+  price?: number;
 
-  @Prop()
-  previousClose?: number | null;
+  @Prop({ type: Number })
+  previousClose?: number;
 
-  @Prop()
-  high?: number | null;
+  @Prop({ type: Number })
+  high?: number;
 
-  @Prop()
-  low?: number | null;
+  @Prop({ type: Number })
+  low?: number;
 
-  @Prop()
-  lastTradedTime?: number | null;
+  @Prop({ type: Number })
+  lastTradedTime?: number;
 
-  @Prop()
-  issueDate?: string | null;
+  @Prop({ type: String })
+  issueDate?: string;
 
-  @Prop()
-  turnover?: number | null;
+  @Prop({ type: Number })
+  turnover?: number;
 
-  @Prop()
-  sharevolume?: number | null;
+  @Prop({ type: Number })
+  sharevolume?: number;
 
-  @Prop()
-  tradevolume?: number | null;
+  @Prop({ type: Number })
+  tradevolume?: number;
 
-  @Prop()
-  marketCap?: number | null;
+  @Prop({ type: Number })
+  marketCap?: number;
 
-  @Prop()
-  marketCapPercentage?: number | null;
+  @Prop({ type: Number })
+  marketCapPercentage?: number;
 
-  @Prop()
-  open?: number | null;
+  @Prop({ type: Number })
+  open?: number;
 
-  @Prop()
-  closingPrice?: number | null;
+  @Prop({ type: Number })
+  closingPrice?: number;
 
-  @Prop()
-  crossingVolume?: number | null;
+  @Prop({ type: Number })
+  crossingVolume?: number;
 
-  @Prop()
-  crossingTradeVol?: number | null;
+  @Prop({ type: Number })
+  crossingTradeVol?: number;
 
-  @Prop()
-  status?: number | null;
+  @Prop({ type: Number })
+  status?: number;
 }
 
 export type TradeSummaryDocument = HydratedDocument<TradeSummary>;

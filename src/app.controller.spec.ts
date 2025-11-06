@@ -1,6 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { ApiKeyGuard } from './auth/api-key.guard';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -8,7 +10,16 @@ describe('AppController', () => {
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [AppService],
+      providers: [
+        AppService,
+        {
+          provide: ConfigService,
+          useValue: {
+            get: () => 'test-api-key',
+          },
+        },
+        ApiKeyGuard,
+      ],
     }).compile();
 
     appController = app.get<AppController>(AppController);
